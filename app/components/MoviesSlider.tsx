@@ -10,7 +10,7 @@ interface MovieSliderProps {
 }
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ movies, title }) => {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
     if (sliderRef.current) {

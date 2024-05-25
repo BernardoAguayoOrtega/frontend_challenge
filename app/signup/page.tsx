@@ -100,13 +100,6 @@ export default function SignupPage() {
           >
             Sign Up
           </button>
-          <button
-            type="button"
-            className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={() => router.push('/login')}
-          >
-            Go to Login
-          </button>
         </div>
       </form>
     </div>

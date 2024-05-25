@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
+import SessionProviderWrapper from './components/SessionProviderWrapper';
+import Header from './components/Header';
 
 export const metadata: Metadata = {
   title: 'Movie List App',
@@ -14,18 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-primary text-secondary">
-        <header className="bg-primary text-secondary py-4 shadow-md border-b border-accent">
-          <div className="container mx-auto">
-            <h1 className="text-3xl font-bold">My Movie List</h1>
+      <body>
+        <SessionProviderWrapper>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <footer className="bg-primary text-secondary p-4 text-center">
+              © 2023 My App
+            </footer>
           </div>
-        </header>
-        <main className="flex-grow container mx-auto p-4">{children}</main>
-        <footer className="bg-primary text-secondary py-4 text-center shadow-md border-t border-accent">
-          <div className="container mx-auto">
-            <p>© 2024 My Movie List</p>
-          </div>
-        </footer>
+        </SessionProviderWrapper>
       </body>
     </html>
   );

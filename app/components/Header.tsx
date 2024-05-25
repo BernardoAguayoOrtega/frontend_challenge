@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="bg-primary text-secondary p-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">My App</h1>
+        <h1 className="text-2xl font-bold">FinspheraFlix</h1>
         <nav>
           {status === 'authenticated' ? (
             <div className="flex items-center space-x-4">

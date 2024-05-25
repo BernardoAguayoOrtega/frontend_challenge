@@ -4,8 +4,8 @@ import SessionProviderWrapper from './components/SessionProviderWrapper';
 import Header from './components/Header';
 
 export const metadata: Metadata = {
-  title: 'Movie List App',
-  description: "Bernardo's Movie List App",
+  title: 'FinspheraFlix',
+  description: 'Discover.amazing.movies',
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-grow">{children}</main>
             <footer className="bg-primary text-secondary p-4 text-center">
-              © 2023 My App
+              © 2024 FinspheraFlix
             </footer>
           </div>
         </SessionProviderWrapper>

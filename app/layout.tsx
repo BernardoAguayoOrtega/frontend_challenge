@@ -20,7 +20,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow">{children}</main>
-            <footer className="bg-primary text-secondary p-4 text-center">
+            <footer className="text-secondary p-4 text-center">
               © 2024 FinspheraFlix
             </footer>
           </div>

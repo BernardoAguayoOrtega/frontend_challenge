@@ -1,13 +1,61 @@
-export default function HomePage() {
+import {
+  fetchDiscoverMovies,
+  fetchNowPlayingMovies,
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchUpcomingMovies,
+} from './api/movie';
+import MovieSlider from './components/MoviesSlider';
+import { Movie } from './types/movie';
+
+interface MoviesData {
+  discoverMovies: Movie[];
+  nowPlayingMovies: Movie[];
+  popularMovies: Movie[];
+  topRatedMovies: Movie[];
+  upcomingMovies: Movie[];
+}
+
+async function getMovies(): Promise<MoviesData> {
+  const [
+    discoverMovies,
+    nowPlayingMovies,
+    popularMovies,
+    topRatedMovies,
+    upcomingMovies,
+  ] = await Promise.all([
+    fetchDiscoverMovies(),
+    fetchNowPlayingMovies(),
+    fetchPopularMovies(),
+    fetchTopRatedMovies(),
+    fetchUpcomingMovies(),
+  ]);
+
+  return {
+    discoverMovies,
+    nowPlayingMovies,
+    popularMovies,
+    topRatedMovies,
+    upcomingMovies,
+  };
+}
+
+export default async function LandingPage() {
+  const {
+    discoverMovies,
+    nowPlayingMovies,
+    popularMovies,
+    topRatedMovies,
+    upcomingMovies,
+  } = await getMovies();
+
   return (
-    <div className="text-center py-20">
-      <h2 className="text-4xl font-bold mb-4">Welcome to My Movie List</h2>
-      <p className="text-lg mb-4">
-        Discover and manage your favorite movies easily.
-      </p>
-      <button className="bg-accent text-secondary font-semibold py-2 px-4 rounded">
-        Get Started
-      </button>
-    </div>
+    <main className="container mx-auto p-4 fade-in">
+      <MovieSlider title="Discover Movies" movies={discoverMovies} />
+      <MovieSlider title="Now Playing" movies={nowPlayingMovies} />
+      <MovieSlider title="Popular" movies={popularMovies} />
+      <MovieSlider title="Top Rated" movies={topRatedMovies} />
+      <MovieSlider title="Upcoming" movies={upcomingMovies} />
+    </main>
   );
 }

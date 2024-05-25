@@ -5,6 +5,7 @@ import {
   fetchTopRatedMovies,
   fetchUpcomingMovies,
 } from './api/movie';
+import Hero from './components/Hero';
 import MovieSlider from './components/MoviesSlider';
 import { Movie } from './types/movie';
 
@@ -51,6 +52,7 @@ export default async function LandingPage() {
 
   return (
     <main className="container mx-auto p-4 fade-in">
+      <Hero movies={popularMovies.slice(0, 5)} />
       <MovieSlider title="Discover Movies" movies={discoverMovies} />
       <MovieSlider title="Now Playing" movies={nowPlayingMovies} />
       <MovieSlider title="Popular" movies={popularMovies} />

@@ -1,14 +1,7 @@
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import fs from 'fs';
 import path from 'path';
-
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  password: string;
-}
 
 const usersFilePath = path.resolve(process.cwd(), 'users.json');
 

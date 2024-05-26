@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-
-interface User {
-  id: string;
-  username: string;
-  email: string;
-  password: string;
-}
+import { User } from 'next-auth';
 
 const usersFilePath = path.resolve(process.cwd(), 'users.json');
 

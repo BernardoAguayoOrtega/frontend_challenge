@@ -42,10 +42,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.container {
-  @apply max-w-7xl mx-auto;
-}
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import SessionProviderWrapper from './components/SessionProviderWrapper';
 import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 
 export const metadata: Metadata = {
   title: 'FinspheraFlix',
@@ -19,6 +20,7 @@ export default function RootLayout({
         <SessionProviderWrapper>
           <div className="min-h-screen flex flex-col">
             <Header />
+            <Sidebar />
             <main className="flex-grow">{children}</main>
             <footer className="text-secondary p-4 text-center">
               © 2024 FinspheraFlix

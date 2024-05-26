@@ -1,5 +1,6 @@
 import {
   fetchDiscoverMovies,
+  fetchMovieDetail,
   fetchNowPlayingMovies,
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -50,9 +51,13 @@ export default async function LandingPage() {
     upcomingMovies,
   } = await getMovies();
 
+  const detailedPopularMovies = await Promise.all(
+    popularMovies.slice(0, 5).map((movie) => fetchMovieDetail(movie.id))
+  );
+
   return (
     <main className="container mx-auto p-4 fade-in">
-      <Hero movies={popularMovies.slice(0, 5)} />
+      <Hero movies={detailedPopularMovies} />
       <MovieSlider title="Discover Movies" movies={discoverMovies} />
       <MovieSlider title="Now Playing" movies={nowPlayingMovies} />
       <MovieSlider title="Popular" movies={popularMovies} />

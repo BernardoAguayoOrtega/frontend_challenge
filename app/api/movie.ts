@@ -1,8 +1,7 @@
 import { Movie } from '../types/movie';
 
 const API_KEY = process.env.TMDB_API_KEY;
-const AUTH_TOKEN =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmFhNzE5Mzk2Y2E5MmZkNGU4OWVjMTI5MGZjZDgyMyIsInN1YiI6IjVmNWI5MDNmNzMxNGExMDAzNGRiN2M0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2GcQEOe17nrVmKFKDTfhGwicuvrmFj4iEUQcnHUZmtU'; // Use your auth token
+const AUTH_TOKEN = process.env.TMDB_AUTH_TOKEN;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 const fetchMovies = async (endpoint: string): Promise<Movie[]> => {

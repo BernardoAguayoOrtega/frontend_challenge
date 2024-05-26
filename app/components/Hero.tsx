@@ -29,7 +29,7 @@ const Hero: React.FC<HeroProps> = ({ movies }) => {
   if (!movie) return null;
 
   return (
-    <div className="relative w-full h-[70vh] overflow-hidden mb-8">
+    <div className="relative w-full h-[70vh] md:h-[60vh] lg:h-[70vh] overflow-hidden mb-8">
       {movies.map((movie, index) => (
         <div
           key={movie.id}
@@ -43,34 +43,36 @@ const Hero: React.FC<HeroProps> = ({ movies }) => {
             className="object-cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-start justify-start p-4">
-            <div className="text-left text-white max-w-2xl mt-16 ml-8">
-              <h1 className="text-4xl font-bold mb-2 transition-opacity duration-300">
+            <div className="text-left text-white max-w-full md:max-w-2xl mt-8 md:mt-16 ml-4 md:ml-8">
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 transition-opacity duration-300">
                 {movie.title}
               </h1>
-              <div className="flex items-center mb-2">
+              <div className="flex flex-wrap items-center mb-2">
                 <StarRating rating={movie.vote_average} />
-                <span className="ml-2 text-lg">{movie.vote_average}</span>
-                <span className="ml-2 text-lg">
+                <span className="ml-2 text-sm md:text-lg">
+                  {movie.vote_average}
+                </span>
+                <span className="ml-2 text-sm md:text-lg">
                   ({movie.vote_count} Reviews)
                 </span>
-                <span className="ml-2 text-lg">
+                <span className="ml-2 text-sm md:text-lg">
                   • {new Date(movie.release_date).getFullYear()}
                 </span>
-                <span className="ml-2 text-lg">
+                <span className="ml-2 text-sm md:text-lg">
                   • {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}min
                 </span>
               </div>
-              <div className="flex items-center mb-2 space-x-2">
+              <div className="flex flex-wrap items-center mb-2 space-x-2">
                 {movie.genres.map((genre: Genre) => (
                   <span
                     key={genre.id}
-                    className="bg-gray-800 text-white py-1 px-2 rounded"
+                    className="bg-gray-800 text-white py-1 px-2 rounded text-xs md:text-sm"
                   >
                     {genre.name}
                   </span>
                 ))}
               </div>
-              <p className="text-lg">{movie.overview}</p>
+              <p className="text-sm md:text-lg">{movie.overview}</p>
             </div>
           </div>
         </div>
@@ -82,7 +84,7 @@ const Hero: React.FC<HeroProps> = ({ movies }) => {
               prevCurrent === 0 ? movies.length - 1 : prevCurrent - 1
             )
           }
-          className="p-4 bg-gray-800 bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-gray-700"
+          className="p-2 md:p-4 bg-gray-800 bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-gray-700"
         >
           &#8249;
         </button>
@@ -92,7 +94,7 @@ const Hero: React.FC<HeroProps> = ({ movies }) => {
               prevCurrent === movies.length - 1 ? 0 : prevCurrent + 1
             )
           }
-          className="p-4 bg-gray-800 bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-gray-700"
+          className="p-2 md:p-4 bg-gray-800 bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-gray-700"
         >
           &#8250;
         </button>

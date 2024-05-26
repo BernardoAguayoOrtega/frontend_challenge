@@ -9,30 +9,32 @@ export default function Header() {
 
   return (
     <header className="bg-primary text-secondary p-4 shadow-lg">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex flex-wrap justify-between items-center">
         <h1 className="text-2xl font-bold">FinspheraFlix</h1>
-        <nav>
+        <nav className="mt-4 md:mt-0">
           {status === 'authenticated' ? (
-            <div className="flex items-center space-x-4">
-              <span>Hello, {session?.user?.email} 😊</span>
+            <div className="flex flex-wrap items-center space-x-4">
+              <span className="block w-full md:w-auto">
+                Hello, {session?.user?.email} 😊
+              </span>
               <button
                 onClick={() => signOut()}
-                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
               >
                 Logout
               </button>
             </div>
           ) : (
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-wrap items-center space-x-4">
               <button
                 onClick={() => router.push('/login')}
-                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
               >
                 Login
               </button>
               <button
                 onClick={() => router.push('/signup')}
-                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
               >
                 Signup
               </button>

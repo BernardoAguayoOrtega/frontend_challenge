@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Movie } from '../types/movie';
 import { searchMovies } from '../api/movie';
 import MovieCard from '../components/MovieCard';
+import withProtectedRoute from '../Hocs/withProtectedRoute';
 
 const Search: React.FC = () => {
   const [query, setQuery] = useState('');
@@ -110,4 +111,4 @@ const Search: React.FC = () => {
   );
 };
 
-export default Search;
+export default withProtectedRoute(Search);

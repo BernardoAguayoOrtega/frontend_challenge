@@ -1,4 +1,4 @@
-import { Movie } from '../types/movie';
+import { Movie, Video } from '../types/movie';
 
 const API_KEY = process.env.TMDB_API_KEY;
 const AUTH_TOKEN = process.env.TMDB_AUTH_TOKEN;
@@ -10,24 +10,31 @@ const fetchMovies = async (endpoint: string): Promise<Movie[]> => {
   return data.results;
 };
 
-export const fetchMovieDetail = async (id: number): Promise<Movie> => {
-  const url = `${BASE_URL}/movie/${id}`;
-  const options = {
-    method: 'GET',
+const fetchMovieDetails = async (id: number): Promise<Movie> => {
+  const res = await fetch(`${BASE_URL}/movie/${id}`, {
     headers: {
       accept: 'application/json',
       Authorization: `Bearer ${AUTH_TOKEN}`,
     },
-  };
-
-  const res = await fetch(url, options);
+  });
   if (!res.ok) {
-    const data = await res.json();
-    throw new Error(
-      `Failed to fetch movie details for ID: ${id}: ${data.status_message}`
-    );
+    throw new Error(`Failed to fetch movie details for ID: ${id}`);
   }
   return res.json();
+};
+
+const fetchMovieVideos = async (id: number): Promise<Video[]> => {
+  const res = await fetch(`${BASE_URL}/movie/${id}/videos`, {
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${AUTH_TOKEN}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch movie videos for ID: ${id}`);
+  }
+  const data = await res.json();
+  return data.results;
 };
 
 export const fetchDiscoverMovies = (): Promise<Movie[]> =>
@@ -40,3 +47,4 @@ export const fetchTopRatedMovies = (): Promise<Movie[]> =>
   fetchMovies('/movie/top_rated');
 export const fetchUpcomingMovies = (): Promise<Movie[]> =>
   fetchMovies('/movie/upcoming');
+export { fetchMovieDetails, fetchMovieVideos };

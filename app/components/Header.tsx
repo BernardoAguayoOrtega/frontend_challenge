@@ -1,6 +1,7 @@
 'use client';
 
 import { useSession, signOut } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
@@ -10,7 +11,9 @@ export default function Header() {
   return (
     <header className="bg-primary text-secondary p-4 shadow-lg">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
-        <h1 className="text-2xl font-bold">FinspheraFlix</h1>
+        <Link href="/">
+          <h1 className="text-2xl font-bold">FinspheraFlix</h1>
+        </Link>
         <nav className="mt-4 md:mt-0">
           {status === 'authenticated' ? (
             <div className="flex flex-wrap items-center space-x-4">

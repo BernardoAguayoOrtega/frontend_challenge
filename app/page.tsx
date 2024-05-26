@@ -1,6 +1,6 @@
 import {
   fetchDiscoverMovies,
-  fetchMovieDetail,
+  fetchMovieDetails,
   fetchNowPlayingMovies,
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -52,7 +52,7 @@ export default async function LandingPage() {
   } = await getMovies();
 
   const detailedPopularMovies = await Promise.all(
-    popularMovies.slice(0, 5).map((movie) => fetchMovieDetail(movie.id))
+    popularMovies.slice(0, 5).map((movie) => fetchMovieDetails(movie.id))
   );
 
   return (

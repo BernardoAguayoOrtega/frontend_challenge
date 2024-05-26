@@ -1,7 +1,7 @@
 import { Movie, Video } from '../types/movie';
 
-const API_KEY = process.env.TMDB_API_KEY;
-const AUTH_TOKEN = process.env.TMDB_AUTH_TOKEN;
+const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+const AUTH_TOKEN = process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 const fetchMovies = async (endpoint: string): Promise<Movie[]> => {
@@ -37,6 +37,26 @@ const fetchMovieVideos = async (id: number): Promise<Video[]> => {
   return data.results;
 };
 
+const searchMovies = async (
+  query: string,
+  page: number = 1
+): Promise<{ results: Movie[]; total_pages: number }> => {
+  const res = await fetch(
+    `${BASE_URL}/search/movie?query=${query}&page=${page}`,
+    {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${AUTH_TOKEN}`,
+      },
+    }
+  );
+  if (!res.ok) {
+    throw new Error(`Failed to search movies for query: ${query}`);
+  }
+  const data = await res.json();
+  return { results: data.results, total_pages: data.total_pages };
+};
+
 export const fetchDiscoverMovies = (): Promise<Movie[]> =>
   fetchMovies('/discover/movie');
 export const fetchNowPlayingMovies = (): Promise<Movie[]> =>
@@ -47,4 +67,4 @@ export const fetchTopRatedMovies = (): Promise<Movie[]> =>
   fetchMovies('/movie/top_rated');
 export const fetchUpcomingMovies = (): Promise<Movie[]> =>
   fetchMovies('/movie/upcoming');
-export { fetchMovieDetails, fetchMovieVideos };
+export { fetchMovieDetails, fetchMovieVideos, searchMovies };

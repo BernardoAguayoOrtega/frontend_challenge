@@ -3,6 +3,7 @@
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Button from './Button';
 
 export default function Header() {
   const { data: session, status } = useSession();
@@ -20,27 +21,12 @@ export default function Header() {
               <span className="block w-full md:w-auto">
                 Hello, {session?.user?.email} 😊
               </span>
-              <button
-                onClick={() => signOut()}
-                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
-              >
-                Logout
-              </button>
+              <Button text="Sign Out" onClick={() => signOut()} />
             </div>
           ) : (
             <div className="flex flex-wrap items-center space-x-4">
-              <button
-                onClick={() => router.push('/login')}
-                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => router.push('/signup')}
-                className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 md:mt-0"
-              >
-                Signup
-              </button>
+              <Button text="Login" onClick={() => router.push('/login')} />
+              <Button text="Sign Up" onClick={() => router.push('/signup')} />
             </div>
           )}
         </nav>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Button from '../components/Button';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -68,12 +69,7 @@ export default function LoginPage() {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button
-            className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </button>
+          <Button text="Sign In" type="submit" />
         </div>
       </form>
     </div>

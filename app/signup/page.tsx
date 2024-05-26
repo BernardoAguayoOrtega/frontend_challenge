@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Button from '../components/Button';
 
 export default function SignupPage() {
   const [username, setUsername] = useState('');
@@ -94,12 +95,7 @@ export default function SignupPage() {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button
-            className="bg-secondary text-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign Up
-          </button>
+          <Button text="Sign Up" type="submit" />
         </div>
       </form>
     </div>

@@ -71,18 +71,21 @@ const fetchGenres = async (): Promise<{ id: number; name: string }[]> => {
   return data.genres;
 };
 
-const fetchMoviesByGenre = async (genreId: number): Promise<Movie[]> => {
-  const res = await fetch(`${BASE_URL}/discover/movie?with_genres=${genreId}`, {
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${AUTH_TOKEN}`,
-    },
-  });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch movies for genre ID: ${genreId}`);
-  }
+const fetchMoviesByGenre = async (
+  genreId: number,
+  page: number = 1
+): Promise<{ results: Movie[]; total_pages: number }> => {
+  const res = await fetch(
+    `${BASE_URL}/discover/movie?with_genres=${genreId}&page=${page}`,
+    {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${AUTH_TOKEN}`,
+      },
+    }
+  );
   const data = await res.json();
-  return data.results;
+  return { results: data.results, total_pages: data.total_pages };
 };
 
 export const fetchDiscoverMovies = (): Promise<Movie[]> =>

@@ -45,7 +45,7 @@ const Sidebar: React.FC = () => {
         </Link>
         <Link href="/genres">
           <span
-            className={`sidebar-icon ${isActive('/categories') ? 'text-green-500' : 'text-white'}`}
+            className={`sidebar-icon ${isActive('/genres') ? 'text-green-500' : 'text-white'}`}
           >
             <FontAwesomeIcon icon={faThList} size="xl" />
           </span>

@@ -5,8 +5,9 @@ import {
   fetchMoviesByGenre,
   fetchMovieDetails,
 } from '@/app/api/movie';
+import MovieSlider from '@/app/components/MoviesSlider';
 import { Movie } from '@/app/types/movie';
-import GenrePageClient from './pageClient';
+import Link from 'next/link';
 
 interface GenreMoviesData {
   genreId: number;
@@ -20,7 +21,7 @@ async function getGenresWithMovies(): Promise<GenreMoviesData[]> {
     genres.map(async (genre) => {
       const movies = await fetchMoviesByGenre(genre.id);
       const detailedMovies = await Promise.all(
-        movies.map((movie) => fetchMovieDetails(movie.id))
+        movies.results.map((movie) => fetchMovieDetails(movie.id))
       );
       return {
         genreId: genre.id,
@@ -35,5 +36,18 @@ async function getGenresWithMovies(): Promise<GenreMoviesData[]> {
 export default async function GenrePageServer() {
   const genresWithMovies = await getGenresWithMovies();
 
-  return <GenrePageClient genresWithMovies={genresWithMovies} />;
+  return (
+    <main className="container mx-auto p-4 fade-in">
+      {genresWithMovies.map(({ genreId, genreName, movies }) => (
+        <div key={genreId} className="mb-8">
+          <Link href={`/genres/${genreId}`}>
+            <div className="text-2xl font-bold cursor-pointer hover:underline">
+              {genreName}
+            </div>
+          </Link>
+          <MovieSlider title={genreName} movies={movies} />
+        </div>
+      ))}
+    </main>
+  );
 }

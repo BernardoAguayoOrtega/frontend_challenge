@@ -3,13 +3,15 @@
 import { useRef } from 'react';
 import MovieCard from './MovieCard';
 import { Movie } from '../types/movie';
+import Link from 'next/link';
 
 interface MovieSliderProps {
   movies: Movie[];
   title: string;
+  to: string;
 }
 
-const MovieSlider: React.FC<MovieSliderProps> = ({ movies, title }) => {
+const MovieSlider: React.FC<MovieSliderProps> = ({ movies, title, to }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -26,7 +28,16 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies, title }) => {
 
   return (
     <div className="mb-8 relative">
-      <h2 className="text-2xl font-bold mb-4 text-white">{title}</h2>
+      <div className="flex justify-between items-center mb-4">
+        <Link href={to}>
+          <h2 className="text-2xl font-bold text-white cursor-pointer">
+            {title}
+          </h2>
+        </Link>
+        <Link href={to}>
+          <span className="text-white text-sm cursor-pointer">See More</span>
+        </Link>
+      </div>
       <div className="relative group">
         <button
           onClick={scrollLeft}

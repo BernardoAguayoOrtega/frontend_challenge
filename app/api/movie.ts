@@ -88,6 +88,27 @@ const fetchMoviesByGenre = async (
   return { results: data.results, total_pages: data.total_pages };
 };
 
+const fetchMoviesByType = async (
+  type: string,
+  page: number = 1
+): Promise<{ results: Movie[]; total_pages: number }> => {
+  const endpoint = type === 'discover' ? `/discover/movie` : `/movie/${type}`;
+  const res = await fetch(
+    `${BASE_URL}${endpoint}?page=${page}&api_key=${API_KEY}`,
+    {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${AUTH_TOKEN}`,
+      },
+    }
+  );
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${type} movies`);
+  }
+  const data = await res.json();
+  return { results: data.results, total_pages: data.total_pages };
+};
+
 export const fetchDiscoverMovies = (): Promise<Movie[]> =>
   fetchMovies('/discover/movie');
 export const fetchNowPlayingMovies = (): Promise<Movie[]> =>
@@ -104,4 +125,5 @@ export {
   searchMovies,
   fetchGenres,
   fetchMoviesByGenre,
+  fetchMoviesByType,
 };

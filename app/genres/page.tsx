@@ -40,12 +40,11 @@ export default async function GenrePageServer() {
     <main className="container mx-auto p-4 fade-in">
       {genresWithMovies.map(({ genreId, genreName, movies }) => (
         <div key={genreId} className="mb-8">
-          <Link href={`/genres/${genreId}`}>
-            <div className="text-2xl font-bold cursor-pointer hover:underline">
-              {genreName}
-            </div>
-          </Link>
-          <MovieSlider title={genreName} movies={movies} />
+          <MovieSlider
+            title={genreName}
+            movies={movies}
+            to={`/genres/${genreId}`}
+          />
         </div>
       ))}
     </main>

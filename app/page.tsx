@@ -1,3 +1,5 @@
+// LandingPage.tsx
+
 import {
   fetchDiscoverMovies,
   fetchMovieDetails,
@@ -58,11 +60,31 @@ export default async function LandingPage() {
   return (
     <main className="container mx-auto p-4 fade-in">
       <Hero movies={detailedPopularMovies} />
-      <MovieSlider title="Discover Movies" movies={discoverMovies} />
-      <MovieSlider title="Now Playing" movies={nowPlayingMovies} />
-      <MovieSlider title="Popular" movies={popularMovies} />
-      <MovieSlider title="Top Rated" movies={topRatedMovies} />
-      <MovieSlider title="Upcoming" movies={upcomingMovies} />
+      <MovieSlider
+        title="Discover Movies"
+        movies={discoverMovies}
+        to="/movies/discover"
+      />
+      <MovieSlider
+        title="Now Playing"
+        movies={nowPlayingMovies}
+        to="/movies/now_playing"
+      />
+      <MovieSlider
+        title="Popular"
+        movies={popularMovies}
+        to="/movies/popular"
+      />
+      <MovieSlider
+        title="Top Rated"
+        movies={topRatedMovies}
+        to="/movies/top_rated"
+      />
+      <MovieSlider
+        title="Upcoming"
+        movies={upcomingMovies}
+        to="/movies/upcoming"
+      />
     </main>
   );
 }

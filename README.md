@@ -18,6 +18,7 @@ This project is a movie listing application built with Next.js, React, and TypeS
 - [Scaling the Application](#scaling-the-application)
   - [Application Architecture](#application-architecture)
   - [Scaling Strategies](#scaling-strategies)
+    - [Global State](#global-state)
     - [Component Architecture](#component-architecture)
     - [Backend Integration](#backend-integration)
     - [Performance Optimization](#performance-optimization)
@@ -67,16 +68,14 @@ The application is deployed on Vercel and can be accessed at [FinspheraFlix](htt
   ```bash
     npm start
 - `lint`: Lints the project files.
-- `lint:fix`: Lints and fixes the project files.
   ```bash
   npm run lint
-  npm run lint:fix
 - `test`: Checks tests.
   ```bash
     npm run test
 - `Format`: Checks TypeScript types in watch mode.
   ```bash
-    npm run test:watch
+    npm run format
 
 ## Environment Variables
 To run this project, you will need to add the following environment variables to your .env file or to the Vercel project settings.
@@ -98,6 +97,8 @@ The application architecture is designed to be modular and scalable. The project
 - **styles**: Contains global styles and Tailwind CSS configurations.
 
 ## Scaling Strategies
+
+### Global State
 
 1. **Server State Management**:
    - Use React Query for efficient server state management. It helps in caching, synchronizing, and updating server state.

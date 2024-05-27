@@ -43,7 +43,7 @@ const Sidebar: React.FC = () => {
             <FontAwesomeIcon icon={faSearch} size="xl" />
           </span>
         </Link>
-        <Link href="/categories">
+        <Link href="/genres">
           <span
             className={`sidebar-icon ${isActive('/categories') ? 'text-green-500' : 'text-white'}`}
           >

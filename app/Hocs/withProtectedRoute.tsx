@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-const withProtectedRoute = (WrappedComponent: React.FC) => {
-  const ComponentWithProtection = (props: any) => {
+const withProtectedRoute = (WrappedComponent: React.FC<any>) => {
+  const ComponentWithProtection: React.FC<any> = (props) => {
     const { status } = useSession();
     const router = useRouter();
 

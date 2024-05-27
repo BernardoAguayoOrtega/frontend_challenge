@@ -57,6 +57,34 @@ const searchMovies = async (
   return { results: data.results, total_pages: data.total_pages };
 };
 
+const fetchGenres = async (): Promise<{ id: number; name: string }[]> => {
+  const res = await fetch(`${BASE_URL}/genre/movie/list`, {
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${AUTH_TOKEN}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch genres');
+  }
+  const data = await res.json();
+  return data.genres;
+};
+
+const fetchMoviesByGenre = async (genreId: number): Promise<Movie[]> => {
+  const res = await fetch(`${BASE_URL}/discover/movie?with_genres=${genreId}`, {
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${AUTH_TOKEN}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch movies for genre ID: ${genreId}`);
+  }
+  const data = await res.json();
+  return data.results;
+};
+
 export const fetchDiscoverMovies = (): Promise<Movie[]> =>
   fetchMovies('/discover/movie');
 export const fetchNowPlayingMovies = (): Promise<Movie[]> =>
@@ -67,4 +95,10 @@ export const fetchTopRatedMovies = (): Promise<Movie[]> =>
   fetchMovies('/movie/top_rated');
 export const fetchUpcomingMovies = (): Promise<Movie[]> =>
   fetchMovies('/movie/upcoming');
-export { fetchMovieDetails, fetchMovieVideos, searchMovies };
+export {
+  fetchMovieDetails,
+  fetchMovieVideos,
+  searchMovies,
+  fetchGenres,
+  fetchMoviesByGenre,
+};

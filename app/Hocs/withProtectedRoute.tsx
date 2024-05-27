@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 const withProtectedRoute = (WrappedComponent: React.FC) => {
   const ComponentWithProtection = (props: any) => {
-    const { data: session, status } = useSession();
+    const { status } = useSession();
     const router = useRouter();
 
     useEffect(() => {

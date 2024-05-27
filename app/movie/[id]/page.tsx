@@ -4,6 +4,7 @@ import VideosSlider from '@/app/components/VideosSlider';
 import { Movie, Video } from '@/app/types/movie';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import FavoriteIcon from '@/app/components/FavoriteIcon';
 
 interface MovieDetailPageProps {
   params: {
@@ -31,7 +32,13 @@ export default async function MovieDetailPage({
     notFound();
   }
 
-  // Filter only official videos
+  return <MovieDetail movie={movie} videos={videos} />;
+}
+
+const MovieDetail: React.FC<{ movie: Movie; videos: Video[] }> = ({
+  movie,
+  videos,
+}) => {
   const officialVideos = videos.filter((video) => video.official);
 
   return (
@@ -46,6 +53,7 @@ export default async function MovieDetailPage({
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <h1 className="text-4xl font-bold">{movie.title}</h1>
+          <FavoriteIcon movie={movie} />
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
@@ -89,4 +97,4 @@ export default async function MovieDetailPage({
       </div>
     </div>
   );
-}
+};

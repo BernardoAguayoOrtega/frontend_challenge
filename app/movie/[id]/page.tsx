@@ -5,6 +5,7 @@ import { Movie, Video } from '@/app/types/movie';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import FavoriteIcon from '@/app/components/FavoriteIcon';
+import Link from 'next/link';
 
 interface MovieDetailPageProps {
   params: {
@@ -82,12 +83,14 @@ const MovieDetail: React.FC<{ movie: Movie; videos: Video[] }> = ({
             </div>
             <div className="flex flex-wrap mb-2 space-x-2">
               {movie.genres.map((genre) => (
-                <span
+                <Link
                   key={genre.id}
-                  className="bg-gray-800 text-white py-1 px-2 rounded"
+                  href={`/genres/${genre.id}?genreName=${genre.name}`}
                 >
-                  {genre.name}
-                </span>
+                  <span className="bg-gray-800 text-white py-1 px-2 rounded cursor-pointer">
+                    {genre.name}
+                  </span>
+                </Link>
               ))}
             </div>
             <p>{movie.overview}</p>

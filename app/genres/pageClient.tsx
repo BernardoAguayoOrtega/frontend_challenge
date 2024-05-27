@@ -23,7 +23,11 @@ const GenrePageClient: React.FC<GenrePageClientProps> = ({
     <main className="container mx-auto p-4 fade-in">
       {genresWithMovies.map(({ genreId, genreName, movies }) => (
         <div key={genreId} className="mb-8">
-          <MovieSlider title={genreName} movies={movies} />
+          <MovieSlider
+            to={`/genres/${genreId}?genreName=${genreName}`}
+            title={genreName}
+            movies={movies}
+          />
         </div>
       ))}
     </main>

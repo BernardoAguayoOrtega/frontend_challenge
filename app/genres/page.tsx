@@ -1,13 +1,10 @@
-// app/genres/GenrePageServer.tsx
-
 import {
   fetchGenres,
   fetchMoviesByGenre,
   fetchMovieDetails,
 } from '@/app/api/movie';
-import MovieSlider from '@/app/components/MoviesSlider';
 import { Movie } from '@/app/types/movie';
-import Link from 'next/link';
+import GenrePageClient from './pageClient';
 
 interface GenreMoviesData {
   genreId: number;
@@ -38,15 +35,7 @@ export default async function GenrePageServer() {
 
   return (
     <main className="container mx-auto p-4 fade-in">
-      {genresWithMovies.map(({ genreId, genreName, movies }) => (
-        <div key={genreId} className="mb-8">
-          <MovieSlider
-            title={genreName}
-            movies={movies}
-            to={`/genres/${genreId}`}
-          />
-        </div>
-      ))}
+      <GenrePageClient genresWithMovies={genresWithMovies} />
     </main>
   );
 }

@@ -1,14 +1,10 @@
-// app/genres/[id]/page.tsx
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Movie } from '@/app/types/movie';
 import { fetchMoviesByGenre } from '@/app/api/movie';
 import MovieCard from '@/app/components/MovieCard';
-import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
 
 interface GenrePageProps {
   params: { genreId: string };
